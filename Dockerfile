@@ -21,4 +21,4 @@ ENTRYPOINT ["/usr/bin/curl"]
 
 ENV ANT_HOME /usr/share/java/apache-ant
 ENV PATH $PATH:$ANT_HOME/bin
-RUN ant-version
+RUN ant -version
