@@ -36,6 +36,8 @@ RUN apt-get -y update && \
 	apt-get -y install ant
 RUN apt-get -y update && \
 	apt-get -y install ant-contrib
+RUN apt-get -y install jq
 
 RUN sfdx force --help
 RUN ant -version
+RUN which jq
