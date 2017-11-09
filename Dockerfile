@@ -40,7 +40,10 @@ RUN apt-get -y install jq
 
 RUN apt-get install curl
 
-RUN sfdx force --help
-RUN ant -version
-RUN which jq
-RUN which curl
+
+RUN ubunto --version
+
+RUN apt-get -y update && \
+	apt-get -y install python3.6
+
+RUN python3 --version
