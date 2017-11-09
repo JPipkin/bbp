@@ -41,8 +41,6 @@ RUN apt-get -y install jq
 RUN apt-get install curl
 
 
-RUN ubunto --version
-
 RUN apt-get -y update && \
 	apt-get -y install python3.6
 
