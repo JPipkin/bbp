@@ -41,7 +41,8 @@ RUN apt-get -y install jq
 RUN apt-get install curl
 
 
-RUN apt-get -y update && \
-	apt-get -y install python3.6
+RUN add-apt-repository ppa:fkrull/deadsnakes && \
+	apt-get update && \
+	apt-get install python3.6
 
 RUN python3 --version
