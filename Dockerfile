@@ -1,4 +1,6 @@
 FROM library/ubuntu
+
+########### SFDX ###########
 RUN apt-get update && \
     apt-get -y install wget && \
     apt-get -y install xz-utils && \
@@ -11,9 +13,7 @@ RUN apt-get update && \
     apt-get -y install git && \
     sfdx force --help;
     
-#Now that DX is installed and ready to go, need to install Java (eww), 
-#because things like running jasmine and mocha unit tests depend on Java.
-# This is in accordance to : https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+########### JDK8 ###########
 RUN apt-get install -y openjdk-8-jdk && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* && \
@@ -27,22 +27,25 @@ RUN apt-get update && \
 	update-ca-certificates -f && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /var/cache/oracle-jdk8-installer;
-
-# Setup JAVA_HOME, this is useful for docker commandline
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
 
-RUN apt-get -y update && \
-	apt-get -y install ant
-RUN apt-get -y update && \
+########### ANT & ANT-CONTRIB ###########
+RUN apt-get update && \
+	apt-get -y install ant && \
+    apt-get update && \
 	apt-get -y install ant-contrib
+
+########### JQ ###########
 RUN apt-get -y install jq
 
+########### CURL ###########
 RUN apt-get install curl
 
-
-RUN add-apt-repository ppa:fkrull/deadsnakes && \
+########### PYTHON3 ###########
+RUN apt-get update && \
+	apt-get -y install software-properties-common python-software-properties && \
+	add-apt-repository ppa:fkrull/deadsnakes && \
 	apt-get update && \
-	apt-get install python3.6
-
-RUN python3 --version
+	apt-get -y install python3.6 && \
+	python3 --version
