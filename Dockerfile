@@ -38,6 +38,9 @@ RUN apt-get -y update && \
 	apt-get -y install ant-contrib
 RUN apt-get -y install jq
 
+RUN apt-get install curl
+
 RUN sfdx force --help
 RUN ant -version
 RUN which jq
+RUN which curl
